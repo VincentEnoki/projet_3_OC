@@ -11,7 +11,6 @@ async function fetchCategories() {
 
 fetchCategories().then((data) => {
   const filter = document.querySelector(".filter");
-  console.log(data);
   data.forEach((category) => {
     const button = document.createElement("button");
     button.textContent = category.name;
@@ -44,6 +43,13 @@ fetchWork().then((data) => {
 function handleFilter(event) {
   const id = event.target.id;
   gallery.innerHTML = "";
+  const filterButtons = document.querySelectorAll(".filter-button");
+  event.target.classList.add("filter-button-active");
+  filterButtons.forEach((button) => {
+    if (button.id !== id) {
+      button.classList.remove("filter-button-active");
+    }
+  });
 
   fetchWork().then((data) => {
     if (id === "0" ) { 

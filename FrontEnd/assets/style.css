@@ -37,6 +37,10 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
@@ -186,3 +190,72 @@ footer nav ul {
 	margin: 2em
 }
 
+.filter{
+	display: flex;
+	justify-content: center;
+	margin: 50px 0 40px 0;
+	gap: 10px;
+}
+.filter-button{
+	border: 1px solid #1D6154; 
+	border-radius:60px;
+	color:#1D6154;
+	background-color: white;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-style: normal;
+	line-height: 19px;
+	font-weight: 700;
+	cursor: pointer;
+	padding: 10px 20px;
+}
+.filter-button:hover{
+	background-color: #1D6154;
+	color: white;
+}
+.filter-button-active{
+	background-color: #1D6154;
+	color: white;
+}
+
+.login-form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.form-input{
+	background: #FFFFFF;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 30px;
+	width: 22rem;
+	height: 2.5rem;
+}
+.form-submit{
+	padding: 5px 30px;
+	background: #1D6154;
+	border-radius: 60px;
+	color:white;
+	margin-bottom: 25px;
+	font-family: 'Syne';
+}
+.form-group{
+	display: flex;
+	flex-direction: column;
+}
+.form-label{
+	font-size: 14px;
+	padding-bottom: 5px;
+	align-self: flex-start;
+}
+.form-title{
+	font-weight: 700;
+	margin-bottom: 50px;
+}
+.form-password-forgot{
+	text-decoration:underline;
+}
+
+.error-message{
+	margin-bottom: 20px;
+}
