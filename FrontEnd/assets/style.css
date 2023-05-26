@@ -63,7 +63,7 @@ header {
 	margin: 50px 0
 }
 section {
-	margin: 50px 0
+	margin: 50px 0 0 0
 }
 
 h1{
@@ -127,7 +127,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -247,6 +246,8 @@ footer nav ul {
 	font-size: 14px;
 	padding-bottom: 5px;
 	align-self: flex-start;
+	font-family: 'Syne';
+	font-weight: 500;
 }
 .form-title{
 	font-weight: 700;
@@ -258,4 +259,49 @@ footer nav ul {
 
 .error-message{
 	margin-bottom: 20px;
+}
+
+.my-projects{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 100px;
+}
+.my-projects h2{
+	margin-right: 20px;
+}
+.my-projects i{
+	margin-right: 5px;
+
+}
+.intro-modif{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	padding-top: 15px;
+	margin-left: 65px;
+}
+
+.edition-nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 50px;
+	gap: 15px;
+	background: black;
+	width: 100%;
+	color: white;
+	font-family: 'Work Sans';
+	padding: 10px;
+}
+.edition-nav button{
+	border-radius: 60px;
+	background: #FFFFFF;
+	color: black;
+	padding: 10px 20px;
+	font-family: 'Work Sans';
+	font-weight: bold;
+	cursor: pointer;
 }

@@ -9,16 +9,24 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="./components/filter.js" defer></script>
+	<script src="./components/home.js" defer></script>
+	<script src="https://kit.fontawesome.com/3c2235b4e4.js" crossorigin="anonymous"></script>
+	<script src="./components/modal.js" defer></script>
 </head>
+<div class="edition-nav">
+	<i class="fa-regular fa-pen-to-square"></i>
+	<span>Mode édition</span>
+	<button type="submit" class="save-button">publier les changements</button>
+</div>
 <body>
+
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>
+			<li class="login-nav">
 				<a href="/pages/login.html">Login</a>
 			</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
@@ -37,8 +45,16 @@
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
+		<div class="intro-modif modif-button">
+			<i class="fa-regular fa-pen-to-square"></i>
+			<p style="cursor:pointer">Modifier</p>
+		</div>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="my-projects">
+			<h2>Mes Projets</h2>
+			<i class="fa-regular fa-pen-to-square  modif-button"></i>
+			<p class="modif-button"style="cursor:pointer">Modifier</p>
+		</div>
 		<div class="filter">
 			<button onclick="handleFilter(event)" class="filter-button" id="0">
 				Tous

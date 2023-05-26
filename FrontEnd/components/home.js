@@ -81,3 +81,22 @@ function createFigureElement(work) {
 
   return figure;
 }
+
+var loginNav = document.querySelector(".login-nav");
+var modifyButton = document.querySelectorAll(".modif-button");
+var token = localStorage.getItem("token");
+if (token) {
+  loginNav.textContent = "Logout";
+  loginNav.style.cursor = "pointer";
+  loginNav.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "../index.html";
+  });
+} else { 
+  modifyButton.forEach((button) => {
+    button.style.display = "none";
+  });
+  document.querySelector(".edition-nav").style.display = "none";
+  document.querySelector(".filter").style.display = "none";
+
+}
