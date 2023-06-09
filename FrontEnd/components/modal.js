@@ -2,8 +2,10 @@ let modalState = null;
 
 const openModal = (e) => {
   e.preventDefault();
+  modalAddForm.style.display = "none";
   const modal = document.querySelector(".modal");
   modal.style.display = null;
+  document.querySelector(".delete-page").style.display = "flex";
   modal.removeAttribute("aria-hidden");
   modal.setAttribute("aria-modal", "true");
   modalState = modal;
@@ -60,7 +62,7 @@ async function fetchWork() {
 fetchWork().then((data) => {
   data.forEach((work) => {
     const figure = createFigureElementModal(work);
-    figure.id = work.id;
+    figure.id = "modal-"+work.id;
     modalWorks.appendChild(figure);
   });
 });
@@ -99,11 +101,65 @@ function createFigureElementModal(work) {
 }
 
 function deleteWork(workId) {
-  // Code to delete the work with the given ID
   fetch(`http://localhost:5678/api/works/${workId}`, {
     method: "DELETE",
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
+  }).then(() => {
+    const figureElement = document.getElementById(workId);
+    if (figureElement) {
+      figureElement.remove();
+    }
+    const modalFigureElement = document.getElementById("modal-"+workId);
+    if (modalFigureElement) {
+      modalFigureElement.remove();
+    }
   })
 }
+
+const buttonAddWork = document.querySelector(".add-project");
+const modalAddForm = document.querySelector(".modal-add-form");
+buttonAddWork.addEventListener("click", () => {
+  document.querySelector(".delete-page").style.display = "none";
+  modalAddForm.style.display = "flex";
+});
+
+const formCategorySelect = document.querySelector(".form-category");
+fetchCategories().then((data) => {
+  data.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = category.name;
+    formCategorySelect.appendChild(option);
+  });
+});
+
+const modalForm = document.querySelector(".modal-form");
+modalForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(modalForm);
+
+  const image = formData.get("image");
+  const title = formData.get("title");
+  const category = formData.get("category");
+
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      const figureModal = createFigureElementModal(data);
+      figureModal.id = "modal-"+data.id;
+      modalWorks.appendChild(figureModal);
+      const figure = createFigureElement(data);
+      figure.id = data.id;
+      document.querySelector('.gallery').appendChild(figure);
+      modalForm.reset();
+    }
+  );
+  });

@@ -76,12 +76,30 @@
 		</form>
 	</section>
 	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal-title" style="display: none;">
-		<div class="modal-wrapper modal-stop" >
-			<i class="fa-solid fa-xmark close-modal"></i>
-			<h2 id="modal-title"> Galerie photo </h2>
-			<div class="modal-works"></div>
+		<div class="modal-wrapper modal-stop">
+			<div class="delete-page">
+				<i class="fa-solid fa-xmark close-modal"></i>
+				<h2 id="modal-title">Galerie photo</h2>
+				<div class="modal-works"></div>
+				<hr style="width: 90%; border: none; height: 1px; background-color: grey;">
+				<button class="add-project">Ajouter une photo</button>
+				<button class="delete-project">Supprimer la galerie</button>
+			</div>
+			<div class="modal-add-form" style="display: none;">
+				<h2 class="modal-form-title">Ajout photo</h2>
+				<form class="modal-form"action="submit" method="post">
+					<label for="image">+ Ajouter une photo</label>
+					<input required type="file" name="image" id="form-image" class="form-file">
+					<label for="title">Titre</label>
+					<input required type="text" name="title" id="form-title" class="form-title">
+					<select name="category" class="form-category"/>
+					<hr style="width: 90%; border: none; height: 1px; background-color: grey;">
+					<input type="submit" class="modal-submit" value="Valider" />
+				</form>
+			</div>
 		</div>
 	</aside>
+	
 </main>
 
 <footer>
