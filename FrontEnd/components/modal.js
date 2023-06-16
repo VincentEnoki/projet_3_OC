@@ -1,4 +1,8 @@
 let modalState = null;
+const prevModal = document.querySelector(".previous-modal");
+const hr = document.querySelector(".hr");
+const modalForm = document.querySelector(".modal-form");
+const imagePreview = document.querySelector("#image-preview");
 
 const openModal = (e) => {
   e.preventDefault();
@@ -32,14 +36,22 @@ const closeModal = (e) => {
     .querySelector(".modal-stop")
     .removeEventListener("click", stopPropagation);
   modalState = null;
+  modalForm.reset();
+  imagePreview.src = "";
+  formWrapper.style.display = "flex";
+  filePreview.style.display = "none";
 };
 
 const stopPropagation = (e) => {
   e.stopPropagation();
 };
 document.querySelectorAll(".modif-button").forEach((p) => {
-  p.addEventListener("click", openModal);
+  p.addEventListener("click", (event) => {
+    openModal(event);
+    prevModal.style.visibility = "hidden";
+  });
 });
+
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" || e.key === "Esc") {
@@ -123,6 +135,7 @@ const modalAddForm = document.querySelector(".modal-add-form");
 buttonAddWork.addEventListener("click", () => {
   document.querySelector(".delete-page").style.display = "none";
   modalAddForm.style.display = "flex";
+  prevModal.style.visibility = "visible";
 });
 
 const formCategorySelect = document.querySelector(".form-category");
@@ -135,7 +148,7 @@ fetchCategories().then((data) => {
   });
 });
 
-const modalForm = document.querySelector(".modal-form");
+
 modalForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(modalForm);
@@ -153,6 +166,8 @@ modalForm.addEventListener("submit", (e) => {
     })
     .then((response) => response.json())
     .then((data) => {
+      document.querySelector(".delete-page").style.display = "flex";
+      modalAddForm.style.display = "none";
       const figureModal = createFigureElementModal(data);
       figureModal.id = "modal-"+data.id;
       modalWorks.appendChild(figureModal);
@@ -160,6 +175,57 @@ modalForm.addEventListener("submit", (e) => {
       figure.id = data.id;
       document.querySelector('.gallery').appendChild(figure);
       modalForm.reset();
+      imagePreview.src = "";
+      formWrapper.style.display = "flex";
+      filePreview.style.display = "none";
+
     }
   );
   });
+
+  const fileInput = document.querySelector("input[type=file]");
+  const submitButton = document.querySelector(".modal-submit");
+  const filePreview = document.querySelector(".form-file-preview");
+  const formWrapper = document.querySelector(".form-file-form");
+  
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+      filePreview.style.display = "flex";
+      formWrapper.style.display = "none";
+      submitButton.disabled = false;
+      submitButton.classList.remove("disabled");
+      submitButton.style.backgroundColor = "#1D6154";
+    } else {
+      filePreview.style.display = "none";
+      formWrapper.style.display = "flex";
+      submitButton.disabled = true;
+      submitButton.classList.add("disabled");
+      submitButton.style.backgroundColor = "#A7A7A7";
+    }
+  });
+
+  prevModal.addEventListener("click", () => {
+    document.querySelector(".delete-page").style.display = "flex";
+    modalAddForm.style.display = "none";
+    prevModal.style.visibility = "hidden";
+    modalForm.reset();
+    imagePreview.src = "";
+    formWrapper.style.display = "flex";
+  }
+  );
+
+
+  
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imagePreview.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.src = "";
+    }
+  });
+  

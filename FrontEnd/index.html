@@ -21,7 +21,7 @@
 <body>
 
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
@@ -77,25 +77,38 @@
 	</section>
 	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal-title" style="display: none;">
 		<div class="modal-wrapper modal-stop">
+			<div class="modal-buttons-header">
+				<i class="fa-solid fa-arrow-left previous-modal" style="cursor: pointer;"></i>
+				<i class="fa-solid fa-xmark close-modal" style="cursor: pointer;"></i>
+			  </div>			  
 			<div class="delete-page">
-				<i class="fa-solid fa-xmark close-modal"></i>
-				<h2 id="modal-title">Galerie photo</h2>
+				<h3 id="modal-title">Galerie photo</h3>
 				<div class="modal-works"></div>
 				<hr style="width: 90%; border: none; height: 1px; background-color: grey;">
 				<button class="add-project">Ajouter une photo</button>
 				<button class="delete-project">Supprimer la galerie</button>
 			</div>
 			<div class="modal-add-form" style="display: none;">
-				<h2 class="modal-form-title">Ajout photo</h2>
-				<form class="modal-form"action="submit" method="post">
-					<label for="image">+ Ajouter une photo</label>
-					<input required type="file" name="image" id="form-image" class="form-file">
-					<label for="title">Titre</label>
-					<input required type="text" name="title" id="form-title" class="form-title">
-					<select name="category" class="form-category"/>
-					<hr style="width: 90%; border: none; height: 1px; background-color: grey;">
-					<input type="submit" class="modal-submit" value="Valider" />
-				</form>
+				<h3 id="modal-form-title">Ajout photo</h3>
+				<form class="modal-form" action="submit" method="post">
+					<div class="form-file-wrapper">
+						<div class="form-file-form">
+							<i class="fa-regular fa-image"></i>
+							<label class="image" for="image">+ Ajouter une photo</label>
+							<input required type="file" name="image" id="image" class="form-file">
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<div class="form-file-preview" style="display: none;">
+							<img id="image-preview" src="" alt="Image Preview">
+						</div>
+					</div>
+						<label class="modal-form-label" for="title">Titre</label>
+						<input required type="text" name="title" id="form-text" class="form-text form-input">
+						<label class="modal-form-label" for="category">Catégorie</label>
+						<select id="category" name="category" class="form-category form-input"></select>
+						<hr style="width: 30rem; margin-top: 0; margin-bottom: 25px; border: none; height: 1px; background-color: grey;">
+						<button disabled style="background-color: #A7A7A7;" class="modal-submit disabled" type="submit">Valider</button>
+				  </form>				  
 			</div>
 		</div>
 	</aside>
